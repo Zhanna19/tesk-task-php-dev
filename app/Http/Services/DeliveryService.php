@@ -17,6 +17,6 @@ class DeliveryService implements DeliveryServiceInterface
 
     public function sendData($data)
     {
-        $this->service->sendData($data);
+        return $this->service->sendData($data);
     }
 }

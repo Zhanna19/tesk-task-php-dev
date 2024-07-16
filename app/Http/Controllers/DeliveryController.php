@@ -34,11 +34,12 @@ class DeliveryController extends Controller
 
             // if for now we have only one service - we can use simple version of DI pattern
             $sendData = new DeliveryService(new NovaPoshtaService);
-            $sendData->sendData($request);
+            return $sendData->sendData($request);
+
 
             // But for handling dependencies Laravel Container can be used
             // then in AppServiceProvider we can resolve dependencies
-            $this->service->sendData($request);
+            return $this->service->sendData($request);
 
         } catch (\Exception $exception) {
             // Handle exception

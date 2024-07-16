@@ -44,8 +44,6 @@ final class NovaPoshtaService implements DeliveryServiceInterface
             throw new \ErrorException('Something went wrong, try later');
         }
 
-        return [];
-
     }
 
     //May be from the config file

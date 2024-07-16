@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->loadRoutesFrom(__DIR__ . '/../Http/routes.php');
     }
 
     /**
