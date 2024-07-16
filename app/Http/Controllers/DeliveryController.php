@@ -10,13 +10,14 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DeliveryFormRequest;
 use App\Http\Services\DeliveryService;
+use App\Http\Services\DeliveryServiceInterface;
 use App\Http\Services\NovaPoshtaService;
 use PHPUnit\Runner\ErrorException;
 
 class DeliveryController extends Controller
 {
 
-    public function __construct()
+    public function __construct(public DeliveryServiceInterface $service)
     {
 
     }
@@ -34,6 +35,10 @@ class DeliveryController extends Controller
             // if for now we have only one service - we can use simple version of DI pattern
             $sendData = new DeliveryService(new NovaPoshtaService);
             $sendData->sendData($request);
+
+            // But for handling dependencies Laravel Container can be used
+            // then in AppServiceProvider we can resolve dependencies
+            $this->service->sendData($request);
 
         } catch (\Exception $exception) {
             // Handle exception
